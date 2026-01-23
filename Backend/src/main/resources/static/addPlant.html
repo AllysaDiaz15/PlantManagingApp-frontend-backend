@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Plants</title>
+</head>
+<body>
+<form id="addForm">
+    <label for="plantName"> Plant name</label><br>
+    <input type="text" name="plantName" id="plantName" placeholder="Plant Name"><br>
+
+    <label for="plantDescription">Plant description</label><br>
+    <input type="text" name="description" id="plantDescription"><br>
+    
+    <label for="careNotes">Care Notes</label><br>
+    <input type="text" name="careNotes" id="careNotes"><br>
+    
+    <label for="preferredWater">Preferred Water</label><br>
+    <input type="text" name="preferredWater" id="preferredWater" placeholder="Ex. normal tap water or rain water"><br>
+
+    <label for="wateringSchedule">Watering schedule</label><br>
+    <input type="text" name="wateringSchedule" id="wateringSchedule" placeholder="Ex. Every 3 days"><br>
+
+    <label for="lastWatered">Last Watered</label><br>
+    <input type="text" name="lastWatered" id="lastWatered" placeholder="Year-Month-Day"><br>
+
+    <label for="fertilizingSchedule">Fertilizing schedule</label><br>
+    <input type="text" name="fertilizingSchedule" id="fertilizingSchedule" placeholder="ex. every 3 days"><br>
+
+    <label for="lastFertilized">last fertilized</label><br>
+    <input type="text" name="lastFertilized" id="lastFertilized" placeholder="Year-Month-Day"><br>
+
+    <label for="repotted">Last repotted</label><br>
+    <input type="text" name="repotted" id="repotted" placeholder="Year-Month-Day"><br>
+
+    <input type="submit">
+    
+</form>
+<script>
+    const thisForm = document.getElementById('addForm');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Build JSON object
+        const plant = {
+            plantName: document.getElementById('plantName').value,
+            description: document.getElementById('plantDescription').value,
+            careNotes: document.getElementById('careNotes').value,
+            preferredWater: document.getElementById('preferredWater').value,
+            wateringSchedule: document.getElementById('wateringSchedule').value,
+            lastWatered: document.getElementById('lastWatered').value || null,
+            fertilizingSchedule: document.getElementById('fertilizingSchedule').value,
+            lastFertilized: document.getElementById('lastFertilized').value || null,
+            repotted: document.getElementById('repotted').value || null
+        };
+
+        const response = await fetch('http://localhost:8080/plants/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'  // Tell backend it's JSON
+            },
+            body: JSON.stringify(plant)  // Convert object to JSON string
+        });
+
+        const result = await response.text();
+        console.log(result, response);
+        console.log("form submitted");
+
+        // Clear form
+        thisForm.reset();
+    });
+</script>
+</body>
+</html>

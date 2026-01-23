@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Plants</title>
+</head>
+<body>
+<h1>My Plants</h1>
+<a href="./addPlant.html">Add Plant</a>
+<div id="plants"></div>
+<div class="container"></div>
+
+<script>
+    
+    fetch("http://localhost:8080/plants/all")
+        .then(response => response.json())
+        .then(plantList => {
+                let html ="<table>";
+            for(const plant of plantList) {
+                html += `<tr><td><a href='./plant.html?plantId=${plant.plantId}'>${plant.plantName}</a></td></tr>`;
+            }
+            html += "</table>";
+            document.getElementById("plants").innerHTML = html;
+
+        })
+        .catch(error => console.error(error));
+</script>
+</body>
+</html>

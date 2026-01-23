@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="plantstyle.css">
+    <title>Plant</title>
+</head>
+<body>
+<h1> My plant </h1>
+<button id="deletebtn"> Delete </button>
+<button id="editbtn">Edit</button>
+
+<form id="editForm">
+    <label for="plantName"> Plant name</label><br>
+    <input type="text" name="plantName" id="plantName" placeholder="Plant Name"><br>
+
+    <label for="plantDescription">Plant description</label><br>
+    <input type="text" name="description" id="plantDescription"><br>
+    
+    <label for="careNotes">Care Notes</label><br>
+    <input type="text" name="careNotes" id="careNotes"><br>
+    
+    <label for="preferredWater">Preferred Water</label><br>
+    <input type="text" name="preferredWater" id="preferredWater" placeholder="Ex. normal tap water or rain water"><br>
+
+    <label for="watersched">Watering schedule</label><br>
+    <input type="text" name="wateringSchedule" id="watersched" placeholder="Ex. Every 3 days"><br>
+
+    <label for="lastWatered">Last Watered</label><br>
+    <input type="text" name="lastWatered" id="lastWatered" placeholder="Year-Month-Day"><br>
+
+    <label for="fertilizingSchedule">Fertilizing schedule</label><br>
+    <input type="text" name="fertilizingSchedule" id="fertilizingSchedule" placeholder="ex. every 3 days"><br>
+
+    <label for="lastFertilized">last fertilized</label><br>
+    <input type="text" name="lastFertilized" id="lastFertilized" placeholder="Year-Month-Day"><br>
+
+    <label for="repotted">Last repotted</label><br>
+    <input type="text" name="repotted" id="repotted" placeholder="Year-Month-Day"><br>
+
+    <input type="submit">
+    
+</form>
+<div id="plants"></div>
+<div class="container"></div>
+
+<script>
+const searchParams = new URLSearchParams(window.location.search);
+const plantId = searchParams.get("plantId");
+console.log(plantId)    
+fetch(`http://localhost:8080/plants/${plantId}`)
+ .then(response => response.json())
+        .then(plantList => {
+            console.log(plantList);
+            document.getElementById("plants").innerHTML = "<div>" + plantList.plantName + "<br>" +
+                plantList.description + "<br>" +
+                plantList.careNotes + "<br>" +
+                plantList.preferredWater + "<br>" +
+                plantList.wateringSchedule + "<br>" +
+                plantList.lastWatered + "<br>" +
+                plantList.fertilizingSchedule + "<br>" +
+                plantList.lastFertilized + "<br>" +
+                plantList.repotted + 
+                "</div>";
+            
+            document.getElementById("deletebtn")
+            .addEventListener("click", async function() {
+                await fetch(`http://localhost:8080/plants/${plantId}`, {
+                    method:'DELETE'
+                });
+            });
+
+
+
+
+            document.getElementById("editbtn").addEventListener('click', async function() {
+                document.getElementById("editForm").style.display = "block";
+            });
+            const editForm= document.getElementById("editForm")
+            editForm.addEventListener('submit', async function(e){
+                e.preventDefault();
+                const formData = new FormData(editForm).entries()
+                const response = await fetch(`http://localhost:8080/plants/${plantId}`, {
+                    method: 'PUT',
+                    body: new URLSearchParams(formData)
+                });
+                console.log("Updated");
+            });
+            console.log("edit clicked")
+            
+            document.getElementById('plantName').value = plantList.plantName;
+            document.getElementById('plantDescription').value = plantList.description;
+            document.getElementById('careNotes').value = plantList.careNotes;
+            document.getElementById('preferredWater').value = plantList.preferredWater;
+            document.getElementById('watersched').value = plantList.wateringSchedule;
+            document.getElementById('lastWatered').value = plantList.lastWatered;
+            document.getElementById('fertilizingSchedule').value = plantList.fertilizingSchedule;
+            document.getElementById('lastFertilized').value = plantList.lastFertilized;
+            document.getElementById('repotted').value = plantList.repotted;
+        })
+        .catch(error => console.error(error));
+
+    
+</script>
+</body>
+</html>

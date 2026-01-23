@@ -1,0 +1,15 @@
+# Backend
+Backend/target/
+Backend/.idea/
+*.class
+*.jar
+*.log
+
+# Frontend
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+
+# General
+.DS_Store
+.env
