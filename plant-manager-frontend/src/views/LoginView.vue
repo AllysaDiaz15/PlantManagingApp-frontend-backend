@@ -3,19 +3,19 @@
         <div id="loginContainer">
             <div v-if="!showSignUp">
             <form @submit.prevent="login">
-                <div><label>User Name: <input type="text" v-model="loginUsername"/></label></div>
-                <div><label>Password: <input type="password" v-model="loginPassword"/></label></div>
-                <div><label><input type="submit" value="Sign In"/></label></div>
+                <div><label id="usernameLogin">User Name: <input type="text" v-model="loginUsername"/></label></div>
+                <div><label id="passwordLogin">Password: <input type="password" v-model="loginPassword"/></label></div>
+                <div id="signInButton"><label ><input type="submit" value="Sign In"/></label></div>
             </form>
-            <button type="button" @click="showSignUp = true" >Sign Up</button>
+            <button id="signUpButton" type="button" @click="showSignUp = true">Sign Up</button>
             </div>
 
             <div v-else>
                 <form @submit.prevent="register">
-                    <div><label>User Name: <input type="text" v-model="signUpUsername"/></label></div>
-                    <div><label>Email: <input type="text" v-model="signUpEmail"/></label></div>
-                <div><label>Password: <input type="password" v-model="signUpPassword"/></label></div>
-                <div><label><input type="submit" value="Register"/></label></div>
+                    <div><label id="usernameSignUp">User Name: <input type="text" v-model="signUpUsername"/></label></div>
+                    <div><label id="emailSignUp">Email: <input type="text" v-model="signUpEmail"/></label></div>
+                    <div><label id="passwordSignUp">Password: <input type="password" v-model="signUpPassword"/></label></div>
+                    <div><label><input type="submit" value="Register"/></label></div>
                 </form>
                 <button @click="showSignUp = false"> Back to Login</button>
             </div>
@@ -69,5 +69,46 @@ const register = async () => {
 }
 </script>
 <style>
-  /* CSS goes here */
+#WholeContainer {
+  background-color: #446945;
+  place-items: center;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+#usernameLogin{
+  position: relative;
+  
+}
+#passwordLogin{
+  position: relative;
+  float: right;
+}
+#usernameSignUp{
+  position: relative;
+  float: left;
+}
+#emailSignUp{
+  position: relative;
+  float: right;
+}
+#passwordSignUp{
+  position: relative;
+  float: right;
+}
+#signInButton{
+  background-color: #446945;
+ 
+}
+#signUpButton{
+  color: #7c58a8;
+  background-color: #d2cadb;
+  border: #d2cadb;
+  padding: 0.5em;
+  border-radius: 3px;
+  margin-right:50% ;
+  
+  
+}
+
 </style>

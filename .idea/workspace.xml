@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ccfd123-24d2-4e67-9187-293017b8db3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Plant Managing App/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.gitattributes" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
@@ -50,11 +49,14 @@
       <change beforePath="$PROJECT_DIR$/../Frontend/src/views/HomeView.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Frontend/src/views/plant.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Frontend/vue.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plant Managing App/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plant Managing App/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Plant Managing App/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plant Managing App/.idea/runConfigurations/Plant_manager_app.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plant Managing App/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/assets/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/assets/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/assets/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/components/WelcomeItem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/views/LoginView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../plant-app-frontend/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../plant-app-frontend/.vscode/extensions.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../plant-app-frontend/README.md" beforeDir="false" />
@@ -121,18 +123,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.PlantApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/allysa.diaz/Desktop/Plant Managing App"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.PlantApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/allysa.diaz/Desktop/Plant Managing App&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="PlantApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.plant_app.PlantApplication" />
