@@ -3,8 +3,8 @@
         <div id="loginContainer">
             <div v-if="!showSignUp">
             <form @submit.prevent="login">
-                <div><label id="usernameLogin">User Name: <input type="text" v-model="loginUsername"/></label></div>
-                <div><label id="passwordLogin">Password: <input type="password" v-model="loginPassword"/></label></div>
+                <div><label id="usernameLogin"><input type="text" v-model="loginUsername" placeholder="Username"/></label></div>
+                <div><label id="passwordLogin"><input type="password" v-model="loginPassword" placeholder="Password"/></label></div>
                 <div id="signInButton"><label ><input type="submit" value="Sign In"/></label></div>
             </form>
             <button id="signUpButton" type="button" @click="showSignUp = true">Sign Up</button>
@@ -107,8 +107,6 @@ const register = async () => {
   padding: 0.5em;
   border-radius: 3px;
   margin-right:50% ;
-  
-  
 }
 
 </style>
