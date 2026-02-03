@@ -34,10 +34,10 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/plants/**").permitAll()
-                        .requestMatchers("/user/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()
-                        .requestMatchers("/v3/**").permitAll()
+                        .requestMatchers("/plants/**").authenticated()
+                        .requestMatchers("/user/**").authenticated()
+                        .requestMatchers("/swagger-ui/**").authenticated()
+                        .requestMatchers("/v3/**").authenticated()
                         .anyRequest().authenticated()
                 );
         return http.build();
