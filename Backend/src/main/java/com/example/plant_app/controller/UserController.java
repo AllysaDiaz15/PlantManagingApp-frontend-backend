@@ -1,7 +1,11 @@
 package com.example.plant_app.controller;
 
+import com.example.plant_app.dto.LoginResponse;
 import com.example.plant_app.dto.RegistrationRequest;
+import com.example.plant_app.security.JwtUtil;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.plant_app.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,20 @@ public class UserController{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @PostMapping(path = "/login")
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
+        User user = userRepository.findByUsername(request.getUsername());
+
+        if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+        String token = jwtUtil.generateToken(user.getUserId(), user.getUsername());
+        return ResponseEntity.ok(new LoginResponse(user.getUserId(), user.getUsername(), token));
+    }
+
     @PostMapping(path = "/register")
     public String addNewUser(@RequestBody @Valid RegistrationRequest request) {
 
@@ -36,18 +54,5 @@ public class UserController{
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
         return "Registered";
-    }
-    @PostMapping(path = "/login")
-    public User login(@RequestBody @Valid LoginRequest request) {
-        User user = userRepository.findByUsername(request.getUsername());
-
-        if (user == null) {
-            return null;
-        }
-        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return user;
-        } else {
-            return null;
-        }
     }
 }
