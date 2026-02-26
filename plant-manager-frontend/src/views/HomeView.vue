@@ -43,7 +43,9 @@
           <div><input type="text" v-model="newWateringSchedule" placeholder="Watering Schedule"/></div>
           <div><input type="date" v-model="newLastWatered" placeholder="Last watered"></div>
           <div><input type="text" v-model="newFertilizingSchedule" placeholder="Fertilizing schedule"/></div>
-          <div><input type="date" id="lastFertilized" v-model="newLastFertilized" placeholder="Last Ferilized"></div>
+          <div>
+            <p class="errorClass" v-if="!dateInPast(new Date(newLastFertilized), new Date())">Date has to be in the past!</p>
+            <input type="date" id="lastFertilized" v-model="newLastFertilized" :class="{'errorClass': !dateInPast(new Date(newLastFertilized), new Date())}" placeholder="Last Ferilized"></div>
           <div><input type="date" v-model="newRepotted" placeholder="Last Repotted"></div>
           <button type="submit">Save</button>
         </form>
@@ -67,6 +69,7 @@ username.value = localStorage.getItem('username')
 userId.value = localStorage.getItem('userId')
 const showForm = ref(false)
 const hoveredPlantId =ref(null)
+const isSmall = true;
 
 const getAuthHeader = () => {
   const token = localStorage.getItem('token')
@@ -98,20 +101,17 @@ const newFertilizingSchedule = ref('')
 const newLastFertilized = ref('')
 const newRepotted = ref('')
 
-var dateInPast = function(firstDate, secondDate) {
-  if (firstDate.setHours(0, 0, 0, 0) <= secondDate.setHours(0, 0, 0, 0)) {
+var dateInPast = function(inputDate, today) {
+  if (isNaN(inputDate)) {
+    return true;
+  }
+  if (inputDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
     return true;
   }
   return false;
 };
 
 const addNewPlant = async () =>{
-  if (!dateInPast(new Date(newLastFertilized.value), new Date())) {
-    const a = document.getElementById("lastFertilized");
-    if (a.value == '') return;
-    a.style.cssText = 'border: #f00';
-    return;
-  }
   const token = localStorage.getItem('token')
   const response = await fetch(`http://localhost:8080/plants/add`, {
     method: 'POST',
@@ -209,5 +209,9 @@ const logOut = () => {
 <style>
 .Welcome {
   grid-column: 1;
+}
+
+.errorClass {
+  color: red;
 }
 </style>
