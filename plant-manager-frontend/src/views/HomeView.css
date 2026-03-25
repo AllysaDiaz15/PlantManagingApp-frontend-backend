@@ -1,0 +1,48 @@
+.Welcome {
+  grid-column: 1;
+}
+
+.errorClass {
+  color: red;
+}
+
+.wholeContainer {
+    background-color: rgb(80, 110, 63);
+    grid-column: span 3;
+    min-height: 600px;
+    min-width: 1000px;
+    padding: 50px 50px 0 100px;
+    border-radius: 20px;
+}
+
+.arrow {
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    padding: .4rem;
+    color: var(--text2);
+    z-index: 1;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.arrow:is(:hover, :focus){
+    color: var(--text1);
+}
+
+.arrow svg{
+    pointer-events: none;
+}
+
+#arrow--right {
+    right: 4%;
+}
+
+#arrow--right:is(:hover :focus){
+    transform: translate(10%, -50%);
+}
+
+.plant-inline{
+    display: inline-flex;
+}

@@ -1,19 +1,46 @@
 <template>
-  <div>
-    <h1 class="Welcome">Welcome, {{ username }}!</h1>
-    <h1>My Plants</h1>
+  <div class="wholeContainer">
 
+    <button class="arrow" id="arrow--left">
+      <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 256 256"
+      width="35" 
+      height="35" > 
+      <rect 
+      width="256" 
+      height="256" 
+      fill="none"/>
+      <polyline 
+      points="160 208 80 128 160 48" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      stroke-width="16"/></svg>
+    </button>
     <div v-if="plants.length ===0">
       <p>You have no Plants yet!</p>
     </div>
-    <div v-else>
-      <div @mouseenter="hoveredPlantId=plant.plantId" @mouseleave="hoveredPlantId=null" v-for="plant in plants" :key="plant.plantId">
+
+
+
+    <div v-else class="plant-grid" >
+      <div @mouseenter="hoveredPlantId=plant.plantId" @mouseleave="hoveredPlantId=null" v-for="plant in plants" :key="plant.plantId" class="plant-inline">
+
+
+        <img :src="'http://localhost:8080/api/uploads/image/' + plant.images" />
+        <p>{{ plant.images }}</p>
         <p>{{ plant.plantName }}</p>
         <button v-if="hoveredPlantId===plant.plantId" @click="deletePlant(plant.plantId)">Delete</button>
         <button v-if="hoveredPlantId===plant.plantId" @click="startEdit(plant)">Edit</button>
+        
+
+
         <div v-if="showEditForm && editPlantId === plant.plantId">
           <button @click="showEditForm=false">X</button>
           <form @submit.prevent="editPlant">
+            <div></div>
              <div><input type="text" v-model="editPlantName" placeholder="Plant Name"/></div>
           <div><input type="text" v-model="editDescription" placeholder="Description"></div>
           <div><input type="text" v-model="editCareNotes" placeholder="Notes"/></div>
@@ -31,11 +58,35 @@
       </div>
     </div>
 
-    <div>
+  <button class="arrow" id="arrow--right">
+      <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 256 256"
+      width="35" 
+      height="35" >
+      
+      <rect
+       width="256" 
+       height="256" 
+       fill="none"/>
+       <polyline 
+       points="96 48 176 128 96 208" 
+       fill="none" 
+       stroke="currentColor" 
+       stroke-linecap="round" 
+       stroke-linejoin="round" stroke-width="16"/></svg>
+    </button>
+
+
+  </div>
+  <div>
       <button @click="showForm = true">add a Plant</button>
       <div v-if="showForm">
         <button @click="showForm=false">X</button>
         <form @submit.prevent="addNewPlant">
+          
+          <input type="file" ref="uploadImage" @change="onImageUpload()">
+          <input type="button" @click="fileUpload()">
           <div><input type="text" v-model="newPlantName" placeholder="Plant Name"/></div>
           <div><input type="text" v-model="newDescription" placeholder="Description"></div>
           <div><input type="text" v-model="newCareNotes" placeholder="Notes"/></div>
@@ -51,17 +102,13 @@
         </form>
       </div>
     </div>
-
-    <button @click="logOut">Log out</button>
-
-  </div>
 </template>
 
 <script setup>
 import {ref} from 'vue'
 import { useRouter } from 'vue-router'
-const router = useRouter()
 
+const router = useRouter()
 const username = ref('')
 const plants = ref([])
 const userId = ref('')
@@ -79,6 +126,24 @@ const getAuthHeader = () => {
   }
 }
 
+const uploadImage = ref(null)
+const formData = ref(null)
+
+const fileUpload = async () => {
+  const token = localStorage.getItem('token')
+  const response = await fetch('http://localhost:8080/api/uploads/images', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${token}` },
+    body: formData.value
+  })
+  const imagePath = await response.text()
+  return imagePath
+}
+const onImageUpload = () => {
+  const file = uploadImage.value.files[0]
+  formData.value = new FormData()
+  formData.value.append('file', file)
+}
 
 const fetchPlants = async () => {
   const token = localStorage.getItem('token')
@@ -112,6 +177,9 @@ var dateInPast = function(inputDate, today) {
 };
 
 const addNewPlant = async () =>{
+
+  const imagePath = await fileUpload()
+
   const token = localStorage.getItem('token')
   const response = await fetch(`http://localhost:8080/plants/add`, {
     method: 'POST',
@@ -129,6 +197,7 @@ const addNewPlant = async () =>{
       fertilizingSchedule: newFertilizingSchedule.value,
       lastFertilized: newLastFertilized.value,
       repotted: newRepotted.value,
+      images: imagePath,
       user:{userId: userId.value}
     })
   })
@@ -198,20 +267,8 @@ const startEdit = (plant) => {
   editRepotted.value = plant.repotted
   showEditForm.value = true
 }
-
-const logOut = () => {
-  
-  localStorage.removeItem('userId')
-  localStorage.removeItem('username')
-  router.push('/Login')
-}
 </script>
 <style>
-.Welcome {
-  grid-column: 1;
-}
+@import './HomeView.css';
 
-.errorClass {
-  color: red;
-}
 </style>

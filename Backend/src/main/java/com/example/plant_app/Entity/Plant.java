@@ -12,7 +12,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-
 import java.time.LocalDate;
 
 @Entity
@@ -51,4 +50,6 @@ public class Plant {
 
     @PastOrPresent(message = "Last repotted cannot be in the future")
     private LocalDate repotted;
+
+    private String imagesPath;
 }

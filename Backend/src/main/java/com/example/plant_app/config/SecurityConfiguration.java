@@ -45,6 +45,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/plants/**").authenticated()
                         .requestMatchers("/swagger-ui/**").authenticated()
                         .requestMatchers("/v3/**").authenticated()
+                        .requestMatchers("/api/uploads/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
@@ -59,7 +60,8 @@ public class SecurityConfiguration {
                 "http://localhost:5173"
                 ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST" , "PUT" , "DELETE" , "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*")); // Authorization before **
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

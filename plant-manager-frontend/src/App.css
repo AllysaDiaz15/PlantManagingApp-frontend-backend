@@ -1,0 +1,58 @@
+
+header {
+  background: #242016;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 1.5;
+  max-height: 100vh;
+  color: antiquewhite;
+}
+
+
+nav {
+  background: #242016;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0rem 0rem 0rem 1rem;
+  }
+  
+  nav {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+.logOutButton {
+  margin-left: auto;
+  margin-right: 1rem;
+  width: 90px;
+  height: 2rem;
+  border-radius:9px;
+  color: rgb(223, 216, 204);
+  background-color: #4b4539;
+}
