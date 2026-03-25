@@ -28,27 +28,26 @@
     <div v-else class="plant-grid" >
       <div @mouseenter="hoveredPlantId=plant.plantId" @mouseleave="hoveredPlantId=null" v-for="plant in plants" :key="plant.plantId" class="plant-inline">
 
-
-        <img :src="'http://localhost:8080/api/uploads/image/' + plant.images" />
-        <p>{{ plant.images }}</p>
+      
+        <img class="plantImage" :src="'http://localhost:8080/api/uploads/' + plant.imagesPath" />
         <p>{{ plant.plantName }}</p>
+      
+       
+
+
+
+
         <button v-if="hoveredPlantId===plant.plantId" @click="deletePlant(plant.plantId)">Delete</button>
         <button v-if="hoveredPlantId===plant.plantId" @click="startEdit(plant)">Edit</button>
-        
-
-
-        <div v-if="showEditForm && editPlantId === plant.plantId">
+          <div v-if="showEditForm && editPlantId === plant.plantId">
           <button @click="showEditForm=false">X</button>
           <form @submit.prevent="editPlant">
-            <div></div>
-             <div><input type="text" v-model="editPlantName" placeholder="Plant Name"/></div>
+          <div><input type="text" v-model="editPlantName" placeholder="Plant Name"/></div>
           <div><input type="text" v-model="editDescription" placeholder="Description"></div>
           <div><input type="text" v-model="editCareNotes" placeholder="Notes"/></div>
           <div><input type="text" v-model="editPreferredWater" placeholder="Preffered water"></div>
           <div><input type="text" v-model="editWateringSchedule" placeholder="Watering Schedule"/></div>
-          <div><input type="date" v-model="editLastWatered" placeholder="Last watered">
-          
-          </div>
+          <div><input type="date" v-model="editLastWatered" placeholder="Last watered"></div>
           <div><input type="text" v-model="editFertilizingSchedule" placeholder="Fertilizing schedule"/></div>
           <div><input type="date" v-model="editLastFertilized" placeholder="Last Ferilized"></div>
           <div><input type="date" v-model="editRepotted" placeholder="Last Repotted"></div>
@@ -56,6 +55,7 @@
           </form>
         </div>
       </div>
+      
     </div>
 
   <button class="arrow" id="arrow--right">
@@ -86,7 +86,6 @@
         <form @submit.prevent="addNewPlant">
           
           <input type="file" ref="uploadImage" @change="onImageUpload()">
-          <input type="button" @click="fileUpload()">
           <div><input type="text" v-model="newPlantName" placeholder="Plant Name"/></div>
           <div><input type="text" v-model="newDescription" placeholder="Description"></div>
           <div><input type="text" v-model="newCareNotes" placeholder="Notes"/></div>
@@ -130,6 +129,10 @@ const uploadImage = ref(null)
 const formData = ref(null)
 
 const fileUpload = async () => {
+  if (!formData.value) {
+    console.log('no file selected')
+    return ''
+  }
   const token = localStorage.getItem('token')
   const response = await fetch('http://localhost:8080/api/uploads/images', {
     method: 'POST',
@@ -137,12 +140,13 @@ const fileUpload = async () => {
     body: formData.value
   })
   const imagePath = await response.text()
+  console.log('upload response:', imagePath)
   return imagePath
 }
 const onImageUpload = () => {
   const file = uploadImage.value.files[0]
   formData.value = new FormData()
-  formData.value.append('file', file)
+  formData.value.append('image', file)
 }
 
 const fetchPlants = async () => {
@@ -197,7 +201,7 @@ const addNewPlant = async () =>{
       fertilizingSchedule: newFertilizingSchedule.value,
       lastFertilized: newLastFertilized.value,
       repotted: newRepotted.value,
-      images: imagePath,
+      imagesPath: imagePath,
       user:{userId: userId.value}
     })
   })

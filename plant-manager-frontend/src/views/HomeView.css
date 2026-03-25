@@ -9,8 +9,8 @@
 .wholeContainer {
     background-color: rgb(80, 110, 63);
     grid-column: span 3;
-    min-height: 600px;
-    min-width: 1000px;
+    min-height: 500px;
+    min-width: 900px;
     padding: 50px 50px 0 100px;
     border-radius: 20px;
 }
@@ -45,4 +45,9 @@
 
 .plant-inline{
     display: inline-flex;
+}
+
+.plantImage{
+    height: 250px;
+    width: 200px;
 }
