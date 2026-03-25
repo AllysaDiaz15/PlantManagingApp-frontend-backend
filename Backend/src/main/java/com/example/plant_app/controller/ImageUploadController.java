@@ -27,7 +27,7 @@ public class ImageUploadController {
     public ResponseEntity<String> UploadImage(@RequestParam("file") MultipartFile file) {
         try {
             String filePath = saveImage(file);
-            return ResponseEntity.ok("Image uploaded successfully: + filePath");
+            return ResponseEntity.ok("Image uploaded successfully:" + filePath);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error uploading image");
         }

@@ -2,6 +2,7 @@ package com.example.plant_app.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -9,7 +10,8 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private final String SECRET = "My-Super-secret-key-that-is-at-least-32-characters-long";
+    @Value("${jwt.secret}")
+    private String SECRET;
     private final long EXPIRATION = 1000 * 60 * 60 * 24;
 
     private SecretKey getSigningKey() {
