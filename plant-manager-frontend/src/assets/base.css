@@ -7,7 +7,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: #94bd88;
+  --color-bg-primary: #94bd88;
+  --color-bg-secondary: #506e3f;
+  --color-surface: #ffffff;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #ffffff;
+  --color-accent: ;
+  --color-danger: ;
+  --color-border: ;
+
+  background-color: var(--color-bg-primary);
 }
 }
 

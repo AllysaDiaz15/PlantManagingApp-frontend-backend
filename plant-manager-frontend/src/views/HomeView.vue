@@ -1,7 +1,7 @@
 <template>
   <div class="wholeContainer">
 
-    <button class="arrow" id="arrow--left">
+    <button class="arrow" id="arrow--left" @click="leftArrow">
       <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 256 256"
@@ -25,12 +25,21 @@
 
 
 
+    
+
     <div v-else class="plant-grid" >
-      <div @mouseenter="hoveredPlantId=plant.plantId" @mouseleave="hoveredPlantId=null" v-for="plant in plants" :key="plant.plantId" class="plant-inline">
 
       
+      <div @mouseenter="hoveredPlantId=plant.plantId" @mouseleave="hoveredPlantId=null" v-for="plant in visiblePlants" :key="plant.plantId" class="plant-inline">
+     
+
+
+
         <img class="plantImage" :src="'http://localhost:8080/api/uploads/' + plant.imagesPath" />
         <p>{{ plant.plantName }}</p>
+    
+        
+        
       
        
 
@@ -58,7 +67,7 @@
       
     </div>
 
-  <button class="arrow" id="arrow--right">
+  <button class="arrow" id="arrow--right" @click="rightArrow">
       <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 256 256"
@@ -104,7 +113,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -116,6 +125,27 @@ userId.value = localStorage.getItem('userId')
 const showForm = ref(false)
 const hoveredPlantId =ref(null)
 const isSmall = true;
+const currentIndex = ref(0)
+
+const visiblePlants = computed(() => {
+  return [
+    plants.value[currentIndex.value - 1],
+    plants.value[currentIndex.value],
+    plants.value[currentIndex.value + 1],
+  ]
+  console.log(visiblePlants.value)
+})
+
+const rightArrow = () => {
+  currentIndex.value++
+  console.log(currentIndex.value)
+}
+
+const leftArrow = () => {
+  currentIndex.value--
+  console.log("clicked")
+}
+
 
 const getAuthHeader = () => {
   const token = localStorage.getItem('token')

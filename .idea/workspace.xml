@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ccfd123-24d2-4e67-9187-293017b8db3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/plant_app/controller/ImageUploadController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Allysa - Chrome.lnk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.gitattributes" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/.gitignore" beforeDir="false" />
@@ -52,18 +51,7 @@
       <change beforePath="$PROJECT_DIR$/../Frontend/src/views/plant.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Frontend/vue.config.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitHub Desktop.lnk" beforeDir="false" afterPath="$PROJECT_DIR$/../GitHub Desktop.lnk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/plant_app/Entity/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/plant_app/Entity/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/plant_app/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/plant_app/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/views/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/views/LoginView.css" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/views/LoginView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/views/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plant-manager-frontend/src/views/HomeView.css" beforeDir="false" afterPath="$PROJECT_DIR$/plant-manager-frontend/src/views/HomeView.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../plant-app-frontend/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../plant-app-frontend/.vscode/extensions.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../plant-app-frontend/README.md" beforeDir="false" />
